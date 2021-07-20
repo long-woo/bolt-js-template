@@ -11,7 +11,7 @@ import typescript2 from 'rollup-plugin-typescript2'
 const generateBanner = (name, fileName, version) => {
 	return `/*! **************************************************
 ** ${name}(${fileName}) version ${version}
-** (c) 良医汇前端组
+** (c) long.woo
 *************************************************** */\n`
 }
 
@@ -108,6 +108,7 @@ const getBuildConfig = (pkg, external, globals, { outFile, format, mode }) => {
 
 // 编译
 const build = () => {
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	const pkg = require(`./${process.env.BUILD_PACKAGE}/package.json`)
 
 	const format = buildFormat(pkg.displayName)
@@ -118,9 +119,7 @@ const build = () => {
 		return prev
 	}, {})
 
-	return Object.keys(format).map(key =>
-		getBuildConfig(pkg, external, globals, format[key])
-	)
+	return Object.keys(format).map(key => getBuildConfig(pkg, external, globals, format[key]))
 }
 
 const buildConfig = build()
