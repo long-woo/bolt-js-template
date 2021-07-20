@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { runCMD } = require('./common')
 
 // 检查 Yarn 是否安装。若没有安装，则安装

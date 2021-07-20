@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const glob = require('glob')
 const rimraf = require('rimraf')
 const { runCMD } = require('./common')
