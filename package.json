@@ -10,6 +10,7 @@
 	"scripts": {
 		"preinstall": "node scripts/preinstall",
 		"postinstall": "husky install",
+		"dev": "node scripts/build -w",
 		"build": "node scripts/build",
 		"test": "jest --coverage --verbose -u",
 		"lint": "eslint --ext .js,.ts",

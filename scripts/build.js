@@ -6,12 +6,13 @@ const { runCMD } = require('./common')
 /**
  * 执行 Rollup 命令
  * @param {*} name - 包名
+ * @param {*} isWatch -
  */
-const runRollup = name => {
+const runRollup = (name, isWatch) => {
 	// 删除 dist 目录
 	rimraf.sync(`${name}/dist/*`)
 
-	runCMD('rollup', `-c`, {
+	runCMD('rollup', `-c${isWatch ? '-w' : ''}`, {
 		env: {
 			BUILD_PACKAGE: name
 		}
@@ -24,7 +25,10 @@ const runRollup = name => {
 
 // 编译
 const build = () => {
-	const buildPackage = process.argv[2]
+	const argv = process.argv
+	const isWatch = argv.includes('-w')
+	const pkgIndex = isWatch ? 3 : 2
+	const buildPackage = argv[pkgIndex]
 
 	if (buildPackage) {
 		runRollup(`packages/${buildPackage}`)
