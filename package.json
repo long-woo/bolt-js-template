@@ -13,7 +13,8 @@
 		"dev": "node scripts/build -w",
 		"build": "node scripts/build",
 		"test": "jest --coverage --verbose -u",
-		"lint": "eslint --ext .js,.ts",
+		"lint": "eslint . --ext .js,.ts",
+		"lint:typescript": "tsc -p tsconfig.json || exit 0",
 		"format": "prettier --write --parser typescript 'packages/**/*.ts' & prettier --write '**.js'",
 		"version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
 	},

@@ -5,6 +5,7 @@
   ],
   "*.ts": [
     "prettier --parser=typescript --write",
-    "npm run lint"
+    "npm run lint",
+    "npm run lint:typescript"
   ]
 }
