@@ -67,11 +67,11 @@ const buildFormat = fileName => ({
  * 编译配置
  * @param {*} pkg - 包信息
  * @param {*} external - 外部包
- * @param {*} globals - 全局模块
+ * @param {*} config - 编译配置
  * @param {*} buildFormat - 编译格式
  * @returns
  */
-const getBuildConfig = (pkg, external, globals, { outFile, format, mode }) => {
+const getBuildConfig = (pkg, external, config, { outFile, format, mode }) => {
 	const isProd = mode === 'production'
 	const output = {
 		file: `${process.env.BUILD_PACKAGE}/dist/${outFile}`,
@@ -82,8 +82,8 @@ const getBuildConfig = (pkg, external, globals, { outFile, format, mode }) => {
 
 	// umd/iife 包，添加 globals、name
 	if (['iife', 'umd'].includes(format)) {
-		output.globals = globals
-		output.name = pkg.windowVariable
+		output.globals = config.globals
+		output.name = config.name
 	}
 
 	return {
@@ -98,10 +98,16 @@ const getBuildConfig = (pkg, external, globals, { outFile, format, mode }) => {
 					compilerOptions: {
 						declarationDir: `${process.env.BUILD_PACKAGE}/dist/types`
 					}
-				}
+				},
+				exclude: ['**/__tests__']
 			}),
 			json(),
-			isProd && terser()
+			isProd &&
+				terser({
+					format: {
+						comments: /良医汇前端组/
+					}
+				})
 		]
 	}
 }
@@ -110,16 +116,17 @@ const getBuildConfig = (pkg, external, globals, { outFile, format, mode }) => {
 const build = () => {
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	const pkg = require(`./${process.env.BUILD_PACKAGE}/package.json`)
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
+	const config = require(`./${process.env.BUILD_PACKAGE}/build.json`)
 
 	const format = buildFormat(pkg.displayName)
 	const external = Object.keys({ ...(pkg.dependencies || '') })
-	const globals = external.reduce((prev, current) => {
-		prev[current] = current
+	// const globals = external.reduce((prev, current) => {
+	// 	prev[current] = current
 
-		return prev
-	}, {})
-
-	return Object.keys(format).map(key => getBuildConfig(pkg, external, globals, format[key]))
+	// 	return prev
+	// }, {})
+	return Object.keys(format).map(key => getBuildConfig(pkg, external, config, format[key]))
 }
 
 const buildConfig = build()

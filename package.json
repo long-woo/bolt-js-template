@@ -13,9 +13,8 @@
 		"dev": "node scripts/build -w",
 		"build": "node scripts/build",
 		"test": "jest --coverage --verbose -u",
-		"lint": "eslint . --ext .js,.ts --fix && tsc -p tsconfig.json #",
-		"format": "prettier --write --parser typescript 'packages/**/*.ts' & prettier --write '**.js'",
-		"version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+		"lint": "eslint . --ext .js,.ts --fix && tsc -p tsconfig.json",
+		"format": "prettier --write --parser typescript 'packages/**/*.ts' & prettier --write '**.js'"
 	},
 	"author": "long.woo",
 	"license": "MIT",

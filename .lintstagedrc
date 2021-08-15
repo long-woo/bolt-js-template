@@ -1,10 +1,11 @@
 {
   "*.js": [
     "prettier --write",
-    "npm run lint"
+    "eslint --fix"
   ],
   "*.ts": [
     "prettier --parser=typescript --write",
-    "npm run lint"
+    "eslint --fix",
+    "bash -c tsc -p tsconfig.json"
   ]
 }

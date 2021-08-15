@@ -4,6 +4,31 @@ const rimraf = require('rimraf')
 const { runCMD } = require('./common')
 
 /**
+ * git add
+ * @param {*} files 文件
+ * @param {*} path 文件所在位置
+ */
+const runGitAdd = (files, path) => {
+	runCMD('git', `add ${files}`, {
+		cwd: path
+	})
+}
+
+/**
+ * 生成 changelog
+ * @param {*} name - 包名
+ */
+const runChangelog = name => {
+	const pkgPath = `${process.cwd()}/${name}`
+
+	runCMD('conventional-changelog', '-p angular -i CHANGELOG.md -s', {
+		cwd: pkgPath
+	})
+
+	runGitAdd('CHANGELOG.md', pkgPath)
+}
+
+/**
  * 执行 Rollup 命令
  * @param {*} name - 包名
  * @param {*} isWatch - 是否为开发模式
@@ -21,6 +46,8 @@ const runRollup = (name, isWatch) => {
 	// runCMD('api-extractor', 'run', {
 	// 	cwd: `${process.cwd()}/${name}`
 	// })
+
+	runChangelog(name)
 }
 
 /**
