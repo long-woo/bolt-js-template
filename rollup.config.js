@@ -105,7 +105,7 @@ const getBuildConfig = (pkg, external, config, { outFile, format, mode }) => {
 			isProd &&
 				terser({
 					format: {
-						comments: /良医汇前端组/
+						comments: /long\.woo/
 					}
 				})
 		]
@@ -121,11 +121,7 @@ const build = () => {
 
 	const format = buildFormat(pkg.displayName)
 	const external = Object.keys({ ...(pkg.dependencies || '') })
-	// const globals = external.reduce((prev, current) => {
-	// 	prev[current] = current
 
-	// 	return prev
-	// }, {})
 	return Object.keys(format).map(key => getBuildConfig(pkg, external, config, format[key]))
 }
 
