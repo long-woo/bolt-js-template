@@ -1,7 +1,7 @@
 {
-	"name": "lyh-js-package",
+	"name": "bolt-js-template",
 	"private": true,
-	"description": "良医汇 JavaScript 包",
+	"description": "基于 bolt 管理的 JavaScript 包",
 	"bolt": {
 		"workspaces": [
 			"packages/*"
