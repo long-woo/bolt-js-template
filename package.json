@@ -12,15 +12,13 @@
 		"postinstall": "husky install",
 		"dev": "node scripts/build -w",
 		"build": "node scripts/build",
-		"test": "jest --coverage --verbose -u",
+		"test": "node scripts/test",
 		"lint": "eslint . --ext .js,.ts --fix && tsc -p tsconfig.json",
 		"format": "prettier --write --parser typescript 'packages/**/*.ts' & prettier --write '**.js'"
 	},
 	"author": "long.woo",
 	"license": "MIT",
 	"dependencies": {
-		"ali-oss": "^6.16.0",
-		"axios": "^0.21.1"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^12.1.4",
@@ -28,12 +26,10 @@
 		"@microsoft/api-extractor": "^7.18.3",
 		"@rollup/plugin-json": "^4.1.0",
 		"@swc/jest": "^0.2.2",
-		"@types/ali-oss": "^6.0.9",
 		"@types/jest": "^26.0.24",
 		"@typescript-eslint/eslint-plugin": "^4.28.4",
 		"@typescript-eslint/parser": "^4.28.3",
 		"conventional-changelog-cli": "^2.1.1",
-		"esbuild": "^0.12.25",
 		"eslint": "^7.30.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-jest": "^24.3.6",
