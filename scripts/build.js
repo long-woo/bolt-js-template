@@ -54,12 +54,12 @@ const runRollup = (name, isWatch) => {
  * 处理编译
  * @param {*} pkgs - 编译的包
  */
-const handleBuildPackage = pkgs => {
+const handleBuildPackage = (pkgs, isWatch) => {
 	pkgs.forEach(pkg => {
 		const isPackage = pkg.indexOf('packages') > -1
 
 		pkg = isPackage ? pkg : `packages/${pkg}`
-		runRollup(pkg)
+		runRollup(pkg, isWatch)
 	})
 }
 
@@ -71,7 +71,7 @@ const build = () => {
 	const buildPackages = argv.slice(pkgIndex)
 
 	if (buildPackages.length) {
-		handleBuildPackage(buildPackages)
+		handleBuildPackage(buildPackages, isWatch)
 		return
 	}
 
