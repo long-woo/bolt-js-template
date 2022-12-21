@@ -7,7 +7,7 @@ const { runCMD } = require('./common')
  * @param {*} name - 包名
  */
 const runJest = name => {
-	runCMD('jest', '', {
+	runCMD('jest', {
 		env: {
 			TEST_PACKAGE: name
 		}
