@@ -3,15 +3,16 @@
 		"baseUrl": ".",
 		"outDir": "dist",
 		"declaration": true,
-		"sourceMap": true,
-		"declarationMap": true,
+		"declarationDir": "types",
 		"module": "ESNext",
 		"target": "ES5",
 		"moduleResolution": "Node",
+		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"strict": true,
+		"allowJs": true,
 		"strictFunctionTypes": true,
 		"importHelpers": true,
 		"downlevelIteration": true,
@@ -19,9 +20,10 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"esModuleInterop": true,
-		"lib": ["ES5", "ES6", "ES7", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ESNext", "DOM"],
-		"types": ["jest", "node"]
+		"noEmit": true,
+		"lib": ["ESNext", "DOM"],
+		"types": ["jest", "node"],
+		"skipLibCheck": true
 	},
-	"include": ["packages/*/src"],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules", "**/__tests__", "**/__mocks__", "**/dist"]
 }
